@@ -39,29 +39,30 @@ def get_real_time_info_on_stock(ticker, i):
 
     if pandas.isnull(enter_price):
         enter_price = market_data.last
-
-    if float(enter_price) * 0.95 >= float(market_data.last):
-        is_down_5_percents = "yes"
-        if float(enter_price) * 0.9 >= float(market_data.last):
-            is_down_10_percents = "yes"
-            if float(enter_price) * 0.85 >= float(market_data.last):
-                is_down_15_percents = "yes"
-                if float(enter_price) * 0.8 >= float(market_data.last):
-                    is_down_20_percents = "yes"
+    if is_order_succeed != 'yes' and is_order_succeed != 'no':
+        if float(enter_price) * 0.95 >= float(market_data.last):
+            is_down_5_percents = "yes"
+            if float(enter_price) * 0.9 >= float(market_data.last):
+                is_down_10_percents = "yes"
+                if float(enter_price) * 0.85 >= float(market_data.last):
+                    is_down_15_percents = "yes"
+                    if float(enter_price) * 0.8 >= float(market_data.last):
+                        is_down_20_percents = "yes"
+                    else:
+                        is_down_20_percents = "no"
                 else:
+                    is_down_15_percents = "no"
                     is_down_20_percents = "no"
             else:
+                is_down_10_percents = "no"
                 is_down_15_percents = "no"
                 is_down_20_percents = "no"
         else:
+            is_down_5_percents = "no"
             is_down_10_percents = "no"
             is_down_15_percents = "no"
             is_down_20_percents = "no"
-    else:
-        is_down_5_percents = "no"
-        is_down_10_percents = "no"
-        is_down_15_percents = "no"
-        is_down_20_percents = "no"
+
     if pandas.isnull(is_order_succeed):
         if float(enter_price) * 1.1 <= float(market_data.last):
             is_order_succeed = "no"
