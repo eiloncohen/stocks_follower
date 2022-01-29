@@ -1,6 +1,3 @@
-from ib_insync import *
-import pandas
-from datetime import datetime
 import schedule
 import time
 from real_time_data import RealTimeData
